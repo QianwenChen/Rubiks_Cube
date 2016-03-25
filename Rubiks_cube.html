@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rubik's cube</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="three/build/three.js"></script>
+	<script type="text/javascript" src="spotify-web-api.js"></script>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="instafeed/instafeed.js"></script>
+	<script type="text/javascript" src="echonest-api.js"></script>
+
+</head>
+
+<body>
+<div id="instafeed"></div>
+
+
+	<!--<input type="submit" id="search_button" value="Search song">!-->
+
+
+<label id="projectName">RUBIK'S CUBE</label>
+<div id="insSetting">
+	<label>Input the Instagram tag name: (e.g. AWESOME)</label> <br />
+
+	<input type="text" id="tagname" placeholder="Tag Name (no '#')">
+</div>
+
+<div id="buttons">
+
+<label id="fileNameNotice">File name format: "Artist - Song name" (e.g. Moloko - Lotus Eater.mp3)</label> <br />
+<button id="defaultMusic">DEFAULT MUSIC</button>
+
+<input type="button" id="file_button" value="PLAY MY MUSIC"> 
+<input type="file" id="get_file"> <br />
+
+</div> <br />
+
+<button id="turning_button">START</button> <br />
+
+<canvas id="temp" width = "150", height = "150"></canvas>
+<canvas id="temp2" width = "150", height = "150"></canvas>
+<canvas id="temp3" width ="150", height = "150"></canvas>
+
+
+<script type="text/javascript" src="Rubiks_cube.js"></script>
+
+
+<!--
+<iframe src="https://embed.spotify.com/?uri=spotify:track:3pzjHKrQSvXGHQ98dx18HI" width="300" height="380" frameborder="0" allowtransparency="true"></iframe> !-->
+
+
+
+
+<audio id="audio" ontimeupdate='detectAudioTime();'></audio>
+	
+
+    
+	
+
+</body>
+</html>
