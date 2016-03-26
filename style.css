@@ -89,6 +89,7 @@ body {
 	font-size: 13px;
 	font-family: "Avenir-Light";
 	z-index: 3;
+	cursor: pointer;
 }
 
 #defaultMusic {
@@ -100,6 +101,7 @@ body {
 	font-size: 13px;
 	font-family: "Avenir-Light";
 	z-index: 3;
+	cursor: pointer;
 }
 #buttons {
 	text-align: center;
