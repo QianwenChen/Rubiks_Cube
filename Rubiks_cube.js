@@ -87,6 +87,15 @@ function init() {
 function ChooseFile () {
 	//console.log('choose file button get!');
 	uploadedFile.click();
+
+	getFileButton.style.background = "#fff";
+	getFileButton.style.border = "3px solid #000";
+	getFileButton.style.color = "#000";
+
+	defaultMusic.style.background = "#000";
+	defaultMusic.style.border = "0px";
+	defaultMusic.style.color = "#fff";
+
 	isDefault = false;
 
 }
@@ -94,6 +103,16 @@ function ChooseFile () {
 //run the defualt music
 function hitDefalutMusic () {
 	isDefault = true; 
+
+	defaultMusic.style.background = "#fff";
+	defaultMusic.style.border = "3px solid #000";
+	defaultMusic.style.color = "#000";
+
+	getFileButton.style.background = "#000";
+	getFileButton.style.border = "0px";
+	getFileButton.style.color = "#fff";
+
+
 	//console.log(isDefault);
 }
 
@@ -368,7 +387,6 @@ function play_and_turn () {
 	else
 	{
 		createScene();
-		//console.log("play and turn");
 		imgArray = getInsTagImage(tagInput.value);
 	
 		//if uploaded music, get the URL of the music
@@ -376,18 +394,30 @@ function play_and_turn () {
 
 		//browser will create a virtual URL for the file, so using FileReader to get the real URL
 		var reader = new FileReader();
-		//console.log("not default");
-		reader.onload = function (e) {
-			//set the URL to the source of the <audio> in DOM
+		
+		reader.onloadend = function (e) {
+			//set the URL to the sourcr of the <audio> in DOM
 			audioTag.src = e.target.result;
 			audioTag.crossOrigin = "anonymous";
-			//console.log("reader onload");
+			//console.log(reader.result);
 		}
 
 		reader.readAsDataURL(uploadedFile.files[0]);
-		//console.log(reader.readAsDataURL(uploadedFile.files[0]));
-	}
-	//if "PLAY DEFAULT" chosen, get the default music
+		
+		/*
+		reader.addEventListener("load", function() {
+			audioTag.src = reader.result;
+			audioTag.crossOrigin = "anonymous";
+		}, false);
+
+		if(uploadedFile.files[0])
+		{
+			console.log(reader.readAsDataURL(uploadedFile.files[0]));
+			reader.readAsDataURL(uploadedFile.files[0]);
+		}
+		*/
+		}
+		//if "PLAY DEFAULT" chosen, get the default music
 		else {
 			//console.log("default");
 			fileName = "Glee Cast - Rather Be";
@@ -404,6 +434,7 @@ function play_and_turn () {
 
 //using the web audio API to get the frequency wave of the music
 function getWaveform () {
+	//console.log("getWaveform");
 	var audioCtx = new (window.AudioContext || window.webkitAudioContext)(); //context
 	analyser = audioCtx.createAnalyser(); 
 	dataArray = new Uint8Array(analyser.frequencyBinCount);
@@ -411,6 +442,7 @@ function getWaveform () {
 
 	//link to the <audio> in DOM
 	var source = audioCtx.createMediaElementSource(audioTag); //input
+	//console.log(audioTag.src);
 	
 	
 	audioTag.addEventListener("canplay", function () {
@@ -424,6 +456,8 @@ function getWaveform () {
 		analyser.connect(audioCtx.destination);
 
 		//play the music
+		//console.log(audioTag.src);
+		//console.log("getWaveform");
 		audioTag.play();
 
 		//draw the instant wave
