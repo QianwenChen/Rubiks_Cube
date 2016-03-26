@@ -368,6 +368,7 @@ function play_and_turn () {
 	else
 	{
 		createScene();
+		//console.log("play and turn");
 		imgArray = getInsTagImage(tagInput.value);
 	
 		//if uploaded music, get the URL of the music
@@ -375,13 +376,16 @@ function play_and_turn () {
 
 		//browser will create a virtual URL for the file, so using FileReader to get the real URL
 		var reader = new FileReader();
+		//console.log("not default");
 		reader.onload = function (e) {
-			//set the URL to the sourcr of the <audio> in DOM
+			//set the URL to the source of the <audio> in DOM
 			audioTag.src = e.target.result;
 			audioTag.crossOrigin = "anonymous";
+			//console.log("reader onload");
 		}
 
 		reader.readAsDataURL(uploadedFile.files[0]);
+		//console.log(reader.readAsDataURL(uploadedFile.files[0]));
 	}
 	//if "PLAY DEFAULT" chosen, get the default music
 		else {
